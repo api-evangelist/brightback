@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/brightback-retention-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: hmacSignature
+  type: apiKey
+  in: header
+  parameter: Signature
+  description: HMAC-SHA-512 signature computed over the request payload plus an ISO8601 timestamp,
+    using the account's Brightback-issued private key.
+  sources:
+  - openapi/brightback-retention-openapi.yml
+- name: hmacPublicKey
+  type: apiKey
+  in: header
+  parameter: Signature-Public-Key
+  description: The Brightback-issued public key identifying the signing account.
+  sources:
+  - openapi/brightback-retention-openapi.yml
