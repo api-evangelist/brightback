@@ -1,0 +1,179 @@
+openapi: 3.1.0
+info:
+  title: Brightback (Chargebee ) Pre-cancel Retention API
+  version: '1.0'
+  description: The Brightback pre-cancel API (now Chargebee Retention) initiates a cancel ("save") session for a subscriber who is about to churn. A backend POSTs the subscriber's identity and account context to the pre-cancel endpoint and receives a unique Cancel Session URL to redirect the end user into Brightback's hosted cancel / retention experience. Server-to-server requests are authenticated with an HMAC-SHA-512 signature over the request using a Brightback-issued public/private key pair.
+  x-provenance:
+    method: generated
+    source:
+    - https://help.brightback.com/article/171-precancel-api
+    - https://github.com/brightback/brightbackjs
+    - https://www.chargebee.com/docs/retention/installing-chargebee-retention.html
+    note: Faithful OpenAPI capture of the documented pre-cancel API. Brightback / Chargebee Retention does not publish an OpenAPI document; this is generated from the public integration docs and the archived first-party brightbackjs library. No fabricated fields.
+  contact:
+    name: Chargebee Retention Support
+    email: retention-support@chargebee.com
+    url: https://help.brightback.com
+servers:
+- url: https://app.brightback.com
+  description: Brightback application host (legacy)
+- url: https://app.retention.chargebee.com
+  description: Chargebee Retention application host (current)
+security:
+- hmacSignature: []
+  hmacPublicKey: []
+tags:
+- name: Retention
+paths:
+  /precancel:
+    post:
+      operationId: createPrecancelSession
+      summary: Create a pre-cancel (save) session
+      description: POST a subscriber's identity and account context to receive a unique Cancel Session URL for the Brightback hosted cancel experience. For server-side requests, sign the request with an HMAC-SHA-512 signature and pass the Signature and Signature-Public-Key headers.
+      tags:
+      - Retention
+      security:
+      - hmacSignature: []
+        hmacPublicKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrecancelRequest'
+            examples:
+              minimal:
+                summary: Minimal request with billing integration
+                value:
+                  app_id: BRIGHTBACK_APP_ID
+                  subscription_id: sub_12345
+                  account:
+                    internal_id: cust_98765
+      responses:
+        '200':
+          description: Session created. Returns a unique Cancel Session URL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrecancelResponse'
+              example:
+                valid: true
+                url: https://app.brightback.com/examplecompany/cancel/12345ABCDE
+        '400':
+          description: Invalid request. Required fields missing or malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                valid: false
+                message: Invalid request
+        '401':
+          description: Signature or public key invalid.
+components:
+  schemas:
+    PrecancelResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        url:
+          type: string
+          format: uri
+          description: Unique Cancel Session URL to serve the end user.
+        message:
+          type: string
+          description: In some responses the session URL is returned in message.
+    Context:
+      type: object
+      description: End-user context captured by the browser client.
+      properties:
+        user_agent:
+          type: string
+        locale:
+          type: string
+        timezone:
+          type: string
+        url:
+          type: string
+        referrer:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        message:
+          type: string
+    PrecancelRequest:
+      type: object
+      required:
+      - app_id
+      - account
+      properties:
+        app_id:
+          type: string
+          description: Your unique Brightback / Chargebee Retention application id.
+        email:
+          type: string
+          format: email
+          description: Subscriber email. Required if subscription_id is omitted.
+        subscription_id:
+          type: string
+          description: Billing-system subscription id. Required if email is omitted.
+        first_name:
+          type: string
+        last_name:
+          type: string
+        full_name:
+          type: string
+        save_return_url:
+          type: string
+          format: uri
+          description: Redirect destination for users who do not cancel.
+        cancel_confirmation_url:
+          type: string
+          format: uri
+          description: Redirect destination for users who confirm cancellation.
+        account:
+          $ref: '#/components/schemas/Account'
+        custom:
+          type: object
+          description: Free-form nested object of business-specific attributes (arrays unsupported).
+          additionalProperties: true
+        context:
+          $ref: '#/components/schemas/Context'
+    Account:
+      type: object
+      required:
+      - internal_id
+      properties:
+        internal_id:
+          type: string
+          description: Your customer's account identifier.
+        billing_id:
+          type: string
+        plan:
+          type: string
+        plan_term:
+          type: string
+        company_name:
+          type: string
+        company_domain:
+          type: string
+        value:
+          type: number
+        created_at:
+          type: string
+          description: Account creation timestamp.
+  securitySchemes:
+    hmacSignature:
+      type: apiKey
+      in: header
+      name: Signature
+      description: HMAC-SHA-512 signature computed over the request payload plus an ISO8601 timestamp, using the account's Brightback-issued private key.
+    hmacPublicKey:
+      type: apiKey
+      in: header
+      name: Signature-Public-Key
+      description: The Brightback-issued public key identifying the signing account.
