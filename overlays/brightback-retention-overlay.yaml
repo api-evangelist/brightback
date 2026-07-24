@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Brightback (Chargebee Retention)
+  version: 1.0.0
+extends: openapi/brightback-retention-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: true
+      x-apievangelist-provider: brightback
+      x-apievangelist-category: churn-prevention
+  - target: $.paths./precancel.post
+    update:
+      x-apievangelist-notes: >-
+        Server-side callers must HMAC-SHA-512 sign the payload plus an ISO8601
+        timestamp and send Signature + Signature-Public-Key headers. Client-side
+        callers use app_id only.

@@ -1,0 +1,23 @@
+generated: '2026-07-18'
+method: searched
+source:
+  - https://github.com/brightback/brightbackjs
+  - https://help.brightback.com/article/43-installing-chargebee-retention
+note: >-
+  brightbackjs is the official first-party JavaScript library maintained by the
+  Brightback GitHub org. Repository was archived 2025-10-24 following the
+  Chargebee Retention consolidation. Distributed primarily via a hosted CDN
+  script rather than a package registry (no public npm/PyPI package located).
+packages:
+  - language: javascript
+    registry: github
+    name: brightbackjs
+    url: https://github.com/brightback/brightbackjs
+    install: '<script src="https://app.brightback.com/js/current/brightback.js?compiled=true"></script>'
+    cdn: https://app.brightback.com/js/current/brightback.js?compiled=true
+    official: true
+    archived: true
+    note: >-
+      Official JS library exposing window.Brightback.handleData() and
+      handleDataPromise(). Also served from
+      https://app.retention.chargebee.com/js/current/brightback.js

@@ -1,0 +1,42 @@
+generated: '2026-07-18'
+method: derived
+source:
+  - openapi/brightback-retention-openapi.yml
+  - https://help.brightback.com/article/171-precancel-api
+  - https://github.com/brightback/brightbackjs
+note: >-
+  Cross-cutting request/response semantics for the Brightback / Chargebee
+  Retention pre-cancel API, derived from the OpenAPI and the public integration
+  docs. Idempotency is not documented for this API, so no Idempotency contract is
+  asserted.
+authentication:
+  style: hmac-signature
+  detail: >-
+    Server-to-server requests are signed with an HMAC-SHA-512 signature over the
+    payload plus an ISO8601 timestamp using a Brightback-issued private key. The
+    signature is sent in the Signature header and the paired public key in the
+    Signature-Public-Key header. Client-side requests use the app_id only.
+  headers:
+    - Signature
+    - Signature-Public-Key
+  see: authentication/brightback-authentication.yml
+content_type:
+  request: application/json
+  response: application/json
+idempotency:
+  supported: false
+  note: No idempotency key documented for /precancel.
+pagination:
+  supported: false
+  note: Single-resource endpoint; no collection listing.
+error_envelope:
+  shape: '{ "valid": <bool>, "message": <string> }'
+  success_signal: valid == true with a Cancel Session URL in url/message
+  see: errors/brightback-problem-types.yml
+versioning:
+  scheme: none-documented
+  note: >-
+    The hosted JS library is served from a /js/current/ path (rolling latest).
+    The pre-cancel API is unversioned in its path.
+rate_limits:
+  documented: false

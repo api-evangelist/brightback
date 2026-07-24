@@ -1,7 +1,16 @@
 aid: brightback
 name: brightback
-description: brightback is a company surfaced as a portfolio company of point-nine and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Brightback (now Chargebee Retention) is a churn-prevention and cancellation-
+  experience platform for subscription businesses. When a customer clicks
+  "cancel," Brightback intercepts the flow with a personalized, hosted save
+  experience — targeted offers, surveys, and deflection paths — driven by
+  customer and billing context passed from the merchant. Founded as a
+  standalone SaaS backed by Point Nine and other investors, Brightback was
+  acquired by Chargebee in 2021 and operates as Chargebee Retention. Developers
+  integrate via the brightbackjs client library or a server-side pre-cancel API
+  that returns a unique Cancel Session URL, with HMAC-SHA-512 signed requests for
+  backend calls.
 url: https://raw.githubusercontent.com/api-evangelist/brightback/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,17 +18,85 @@ x-backed-by:
 - point-nine
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-acquired-by: chargebee
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://logo.clearbit.com/brightback.com
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-apis: []
+- Churn Prevention
+- Customer Retention
+- Subscriptions
+- Cancellation
+- SaaS
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: brightback:brightback-retention-api
+  name: brightback Retention API
+  description: The Retention API from brightback — 1 operation(s) for retention.
+  humanURL: https://help.brightback.com/article/171-precancel-api
+  baseURL: https://app.brightback.com
+  tags:
+  - Retention
+  properties:
+  - type: OpenAPI
+    url: openapi/brightback-retention-api-openapi.yml
 common:
+- type: Documentation
+  url: https://www.chargebee.com/docs/retention/installing-chargebee-retention.html
+- type: APIReference
+  url: https://help.brightback.com/article/171-precancel-api
+- type: Support
+  url: https://help.brightback.com
+- type: GitHubOrganization
+  url: https://github.com/brightback
+- type: StatusPage
+  url: https://status.chargebee.com/
 - type: Website
   url: https://brightback.com
+- type: Packages
+  url: packages/brightback-packages.yml
+- type: SDKs
+  url: packages/brightback-packages.yml
+- type: Authentication
+  url: authentication/brightback-authentication.yml
+- type: Conventions
+  url: conventions/brightback-conventions.yml
+- type: ErrorCatalog
+  url: errors/brightback-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/brightback-lifecycle.yml
+- type: Conformance
+  url: conformance/brightback-conformance.yml
+- type: DataModel
+  url: data-model/brightback-data-model.yml
+- type: MCPServer
+  url: mcp/brightback-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/brightback-llms.txt
+- type: DomainSecurity
+  url: security/brightback-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

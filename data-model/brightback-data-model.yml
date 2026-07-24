@@ -1,0 +1,23 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/brightback-retention-openapi.yml
+note: Entity-relationship graph derived from the OpenAPI request/response schemas.
+entities:
+  - name: PrecancelSession
+    description: A cancel/save session initiated for a churning subscriber; yields a Cancel Session URL.
+    fields: [app_id, email, subscription_id, save_return_url, cancel_confirmation_url, url]
+  - name: Account
+    description: The customer account context passed into a pre-cancel request.
+    fields: [internal_id, billing_id, plan, plan_term, company_name, company_domain, value, created_at]
+  - name: Context
+    description: End-user browser context captured by the client library.
+    fields: [user_agent, locale, timezone, url, referrer]
+relationships:
+  - from: PrecancelSession
+    to: Account
+    type: has_one
+    via: account
+  - from: PrecancelSession
+    to: Context
+    type: has_one
+    via: context

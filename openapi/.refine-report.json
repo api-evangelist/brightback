@@ -1,0 +1,14 @@
+{
+  "provider": "brightback",
+  "sources": [
+    "brightback-retention-api-openapi.yml"
+  ],
+  "outputs": [
+    "brightback-retention-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

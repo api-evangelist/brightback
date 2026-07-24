@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/brightback-retention-openapi.yml
+format: custom
+note: >-
+  Derived from the OpenAPI 4xx responses. Brightback returns a simple JSON
+  envelope { "valid": false, "message": "..." } rather than RFC 9457
+  problem+json. Titles/remediation reflect the documented behavior.
+envelope:
+  fields:
+    valid: boolean
+    message: string
+problems:
+  - status: 400
+    title: Invalid request
+    detail: >-
+      Required fields missing or malformed. app_id and account.internal_id are
+      required; one of email or subscription_id must be present.
+    remediation: >-
+      Ensure app_id, account.internal_id, and either email or subscription_id
+      are supplied in a valid JSON body.
+    source_operation: openapi/brightback-retention-openapi.yml#createPrecancelSession
+  - status: 401
+    title: Invalid signature or public key
+    detail: >-
+      The HMAC-SHA-512 signature or the Signature-Public-Key header did not
+      validate for the account.
+    remediation: >-
+      Recompute the signature over the payload plus ISO8601 timestamp using your
+      private key and send the matching public key.
+    source_operation: openapi/brightback-retention-openapi.yml#createPrecancelSession

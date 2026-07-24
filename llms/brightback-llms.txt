@@ -1,0 +1,31 @@
+# Brightback (Chargebee Retention)
+
+> Brightback is a churn-prevention / cancellation-experience platform, now part
+> of Chargebee as Chargebee Retention. Its pre-cancel API initiates a hosted
+> cancel/save session for a churning subscriber and returns a unique Cancel
+> Session URL to redirect the end user into a personalized retention flow.
+
+## APIs
+- [Pre-cancel API (OpenAPI)](openapi/brightback-retention-openapi.yml): POST /precancel to create a cancel session.
+
+## Docs
+- [Pre-cancel API guide](https://help.brightback.com/article/171-precancel-api)
+- [Installing Chargebee Retention.js](https://help.brightback.com/article/43-installing-chargebee-retention)
+- [Chargebee Retention docs](https://www.chargebee.com/docs/retention/installing-chargebee-retention.html)
+- [Help center](https://help.brightback.com)
+
+## SDKs
+- [brightbackjs (official JS library, archived)](https://github.com/brightback/brightbackjs)
+- CDN: https://app.brightback.com/js/current/brightback.js?compiled=true
+
+## Artifacts
+- [Authentication profile](authentication/brightback-authentication.yml)
+- [Conventions](conventions/brightback-conventions.yml)
+- [Error catalog](errors/brightback-problem-types.yml)
+- [Lifecycle](lifecycle/brightback-lifecycle.yml)
+- [Data model](data-model/brightback-data-model.yml)
+- [Agent skill: create pre-cancel session](skills/brightback-create-precancel-session.md)
+
+## Support
+- retention-support@chargebee.com
+- Status: https://status.chargebee.com/

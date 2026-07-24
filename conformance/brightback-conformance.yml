@@ -1,0 +1,22 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/brightback-retention-openapi.yml
+note: >-
+  Cross-cutting standards conformance derived from the OpenAPI. No published
+  compliance-program certifications were independently verified for the Retention
+  product, so no Compliance pointer is asserted here.
+standards:
+  - id: openapi-3.1
+    conforms: true
+    evidence: Captured as an OpenAPI 3.1.0 document.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a { valid, message } JSON envelope, not application/problem+json.
+  - id: oauth2
+    conforms: false
+    evidence: Auth is HMAC-SHA-512 request signing, not OAuth2.
+  - id: hmac-request-signing
+    conforms: true
+    evidence: HMAC-SHA-512 signature over payload + ISO8601 timestamp (Signature / Signature-Public-Key headers).
+  - id: json-api
+    conforms: false

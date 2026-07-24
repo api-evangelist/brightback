@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+source:
+  - https://www.chargebee.com/security/
+  - https://github.com/brightback/brightbackjs
+  - https://help.brightback.com/article/171-precancel-api
+note: >-
+  Brightback is now Chargebee Retention, running on Chargebee infrastructure
+  (app.retention.chargebee.com). Operational status is surfaced via the Chargebee
+  status page. No formal deprecation/sunset policy is documented for the
+  pre-cancel API; the first-party brightbackjs library was archived 2025-10-24 as
+  part of the Chargebee consolidation.
+versioning:
+  scheme: rolling
+  detail: Hosted JS served from /js/current/; pre-cancel API path is unversioned.
+status_page: https://status.chargebee.com/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes:
+    - >-
+      brightbackjs GitHub repository archived 2025-10-24; migration path is
+      Chargebee.js / Chargebee Retention.
+deprecated_operations: []

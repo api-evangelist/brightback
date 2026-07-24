@@ -1,0 +1,8 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/brightback-retention-openapi.yml
+skills:
+  - file: brightback-create-precancel-session.md
+    name: Create a Brightback pre-cancel session
+    api: openapi/brightback-retention-openapi.yml
+    operations: [createPrecancelSession]
