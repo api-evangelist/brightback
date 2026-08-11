@@ -59,6 +59,8 @@ apis:
   - type: OpenAPI
     url: openapi/brightback-retention-api-openapi.yml
 common:
+- type: Overlay
+  url: overlays/brightback-retention-overlay.yaml
 - type: Documentation
   url: https://www.chargebee.com/docs/retention/installing-chargebee-retention.html
 - type: APIReference
