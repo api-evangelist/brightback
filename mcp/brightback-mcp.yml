@@ -2,16 +2,19 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: openapi/brightback-retention-openapi.yml
-note: >-
-  No official hosted/remote MCP server was located for Brightback / Chargebee
-  Retention. This is a candidate tool list derived from the documented pre-cancel
-  operation.
+note: No official hosted/remote MCP server was located for Brightback / Chargebee Retention. This is a
+  candidate tool list derived from the documented pre-cancel operation.
 server:
   name: brightback
   transport: http
 tools:
-  - name: create_precancel_session
-    description: >-
-      Create a Brightback pre-cancel (save) session for a churning subscriber and
-      return a unique Cancel Session URL.
-    source_operation: openapi/brightback-retention-openapi.yml#createPrecancelSession
+- name: create_precancel_session
+  description: Create a Brightback pre-cancel (save) session for a churning subscriber and return a unique
+    Cancel Session URL.
+  source_operation: openapi/brightback-retention-openapi.yml#createPrecancelSession
+deployment:
+  mode: none
+  verified: derived
+  tools: 1
+  checked: '2026-08-12'
+  source: catalog MCP census

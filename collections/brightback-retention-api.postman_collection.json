@@ -1,0 +1,262 @@
+{
+  "item": [
+    {
+      "id": "d3ff43fd-8cf4-4ff1-8341-8b65445202b8",
+      "name": "Retention",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "787e777b-9f28-431b-8cb8-931ea1410cc3",
+          "name": "Create a pre-cancel (save) session",
+          "request": {
+            "name": "Create a pre-cancel (save) session",
+            "description": {
+              "content": "POST a subscriber's identity and account context to receive a unique Cancel Session URL for the Brightback hosted cancel experience. For server-side requests, sign the request with an HMAC-SHA-512 signature and pass the Signature and Signature-Public-Key headers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "precancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Signature"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"app_id\": \"<string>\",\n  \"account\": {\n    \"internal_id\": \"<string>\",\n    \"billing_id\": \"<string>\",\n    \"plan\": \"<string>\",\n    \"plan_term\": \"<string>\",\n    \"company_name\": \"<string>\",\n    \"company_domain\": \"<string>\",\n    \"value\": \"<number>\",\n    \"created_at\": \"<string>\"\n  },\n  \"email\": \"<email>\",\n  \"subscription_id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"full_name\": \"<string>\",\n  \"save_return_url\": \"<uri>\",\n  \"cancel_confirmation_url\": \"<uri>\",\n  \"custom\": {\n    \"key_0\": 3824,\n    \"key_1\": 7265\n  },\n  \"context\": {\n    \"user_agent\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"url\": \"<string>\",\n    \"referrer\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f8af4a19-add0-4da9-aaa1-782e27eacf4a",
+              "name": "Session created. Returns a unique Cancel Session URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "precancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Signature",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app_id\": \"BRIGHTBACK_APP_ID\",\n  \"subscription_id\": \"sub_12345\",\n  \"account\": {\n    \"internal_id\": \"cust_98765\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": true,\n  \"url\": \"https://app.brightback.com/examplecompany/cancel/12345ABCDE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "765a91f9-3d91-43bb-827a-86e7956ebaab",
+              "name": "Invalid request. Required fields missing or malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "precancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Signature",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app_id\": \"BRIGHTBACK_APP_ID\",\n  \"subscription_id\": \"sub_12345\",\n  \"account\": {\n    \"internal_id\": \"cust_98765\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"message\": \"Invalid request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "144afd69-02a8-425f-b605-c55484e7f0e6",
+              "name": "Signature or public key invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "precancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Signature",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app_id\": \"BRIGHTBACK_APP_ID\",\n  \"subscription_id\": \"sub_12345\",\n  \"account\": {\n    \"internal_id\": \"cust_98765\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.brightback.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Signature"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "93ddf3d5-06f1-4b84-82a7-f78614251c50",
+    "name": "Brightback (Chargebee ) Pre-cancel Retention API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Brightback pre-cancel API (now Chargebee Retention) initiates a cancel (\"save\") session for a subscriber who is about to churn. A backend POSTs the subscriber's identity and account context to the pre-cancel endpoint and receives a unique Cancel Session URL to redirect the end user into Brightback's hosted cancel / retention experience. Server-to-server requests are authenticated with an HMAC-SHA-512 signature over the request using a Brightback-issued public/private key pair.\n\nContact Support:\n Name: Chargebee Retention Support\n Email: retention-support@chargebee.com",
+      "type": "text/plain"
+    }
+  }
+}

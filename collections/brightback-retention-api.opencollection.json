@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brightback (Chargebee ) Pre-cancel Retention API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Signature",
+      "value": "{{Signature}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retention",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a pre-cancel (save) session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.brightback.com/precancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Signature",
+              "value": "{{Signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "POST a subscriber's identity and account context to receive a unique Cancel Session URL for the Brightback hosted cancel experience. For server-side requests, sign the request with an HMAC-SHA-512 signature and pass the Signature and Signature-Public-Key headers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
