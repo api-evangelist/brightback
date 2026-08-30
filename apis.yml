@@ -77,6 +77,11 @@ apis:
   - type: OpenAPI
     url: openapi/brightback-retention-api-openapi.yml
 common:
+- type: ParentCompany
+  url: https://apis.io/providers/chargebee/
+  name: Chargebee
+  x-relationship: acquired
+  x-evidence: "Founded as a standalone SaaS backed by Point Nine and other investors, Brightback was acquired by Chargebee in 2021 and operates as Chargebee Retention."
 - type: Overlay
   url: overlays/brightback-retention-overlay.yaml
 - type: Documentation
