@@ -95,6 +95,27 @@ components:
         created_at:
           type: string
           description: Account creation timestamp.
+    ErrorResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        message:
+          type: string
+    Context:
+      type: object
+      description: End-user context captured by the browser client.
+      properties:
+        user_agent:
+          type: string
+        locale:
+          type: string
+        timezone:
+          type: string
+        url:
+          type: string
+        referrer:
+          type: string
     PrecancelRequest:
       type: object
       required:
@@ -133,13 +154,6 @@ components:
           additionalProperties: true
         context:
           $ref: '#/components/schemas/Context'
-    ErrorResponse:
-      type: object
-      properties:
-        valid:
-          type: boolean
-        message:
-          type: string
     PrecancelResponse:
       type: object
       properties:
@@ -152,20 +166,6 @@ components:
         message:
           type: string
           description: In some responses the session URL is returned in message.
-    Context:
-      type: object
-      description: End-user context captured by the browser client.
-      properties:
-        user_agent:
-          type: string
-        locale:
-          type: string
-        timezone:
-          type: string
-        url:
-          type: string
-        referrer:
-          type: string
   securitySchemes:
     hmacSignature:
       type: apiKey
