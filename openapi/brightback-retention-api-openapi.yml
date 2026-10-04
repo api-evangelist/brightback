@@ -72,36 +72,6 @@ paths:
           description: Signature or public key invalid.
 components:
   schemas:
-    Account:
-      type: object
-      required:
-      - internal_id
-      properties:
-        internal_id:
-          type: string
-          description: Your customer's account identifier.
-        billing_id:
-          type: string
-        plan:
-          type: string
-        plan_term:
-          type: string
-        company_name:
-          type: string
-        company_domain:
-          type: string
-        value:
-          type: number
-        created_at:
-          type: string
-          description: Account creation timestamp.
-    ErrorResponse:
-      type: object
-      properties:
-        valid:
-          type: boolean
-        message:
-          type: string
     Context:
       type: object
       description: End-user context captured by the browser client.
@@ -154,6 +124,29 @@ components:
           additionalProperties: true
         context:
           $ref: '#/components/schemas/Context'
+    Account:
+      type: object
+      required:
+      - internal_id
+      properties:
+        internal_id:
+          type: string
+          description: Your customer's account identifier.
+        billing_id:
+          type: string
+        plan:
+          type: string
+        plan_term:
+          type: string
+        company_name:
+          type: string
+        company_domain:
+          type: string
+        value:
+          type: number
+        created_at:
+          type: string
+          description: Account creation timestamp.
     PrecancelResponse:
       type: object
       properties:
@@ -166,6 +159,13 @@ components:
         message:
           type: string
           description: In some responses the session URL is returned in message.
+    ErrorResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        message:
+          type: string
   securitySchemes:
     hmacSignature:
       type: apiKey
